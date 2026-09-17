@@ -1,0 +1,23 @@
+{
+  "name": "jan-seva-vaani-ai",
+  "version": "2.0.0",
+  "description": "Jan Seva Vaani 2.0 - Voice-Powered Government Scheme & Google Form Assistant for Rural and Non-Literate Citizens",
+  "main": "terminal-demo.js",
+  "scripts": {
+    "start": "python -m http.server 5500",
+    "serve": "python -m http.server 5500",
+    "terminal": "node terminal-demo.js",
+    "cli": "node terminal-demo.js"
+  },
+  "keywords": [
+    "jan-seva-vaani",
+    "voice-form-filler",
+    "pm-kisan",
+    "ayushman-bharat",
+    "google-forms-voice",
+    "rural-accessibility",
+    "speech-to-text"
+  ],
+  "author": "Jan Seva Vaani AI Team",
+  "license": "MIT"
+}

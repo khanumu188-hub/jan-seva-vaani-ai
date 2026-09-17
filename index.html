@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="hi" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>जन सेवा वाणी 2.0 | Jan Seva Vaani - AI Voice Government & Google Form Assistant</title>
+  <meta name="description" content="जन सेवा वाणी AI 2.0 - ग्रामीण और अशिक्षित नागरिकों के लिए बोलकर सरकारी योजनाएं व Google Form भरने वाला अत्याधुनिक AI वॉयस सहायक।">
+  <meta name="keywords" content="Jan Seva Vaani, Voice AI, PM Kisan, Ayushman Bharat, Ration Card, e-Shram, Google Forms Voice, Accessibility India">
+  <meta name="author" content="Jan Seva Vaani Team">
+
+  <!-- Google Fonts for Modern Typography & Devanagari Readability -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Ambient background lighting orbs -->
+  <div class="ambient-glow glow-1" aria-hidden="true"></div>
+  <div class="ambient-glow glow-2" aria-hidden="true"></div>
+  <div class="ambient-glow glow-3" aria-hidden="true"></div>
+  <div class="tricolor-stripe" aria-hidden="true"></div>
+
+  <!-- Confetti Canvas for Celebrations -->
+  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+  <!-- Top Welfare Announcement Banner -->
+  <aside class="top-announcement" role="complementary" aria-label="Welfare Announcement">
+    <div class="announcement-content">
+      <div class="announcement-left">
+        <span class="flag-icon">🇮🇳</span>
+        <span class="announcement-text">
+          <strong>जन सेवा वाणी AI 2.0 :</strong> अब लिखना-पढ़ना जरूरी नहीं! सिर्फ बोलकर भरें सरकारी योजना और Google Form।
+        </span>
+      </div>
+      <div class="announcement-right">
+        <span class="badge-tollfree">📞 टोल फ्री: 1800-VOICE-SEVA</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Navigation Bar -->
+  <header class="navbar" id="main-nav">
+    <div class="nav-container">
+      <a href="#" class="brand-logo" id="logo-link">
+        <div class="logo-icon-wrap">
+          <div class="logo-radar"></div>
+          <svg class="logo-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+            <line x1="12" y1="19" x2="12" y2="22"></line>
+            <line x1="8" y1="22" x2="16" y2="22"></line>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">जन सेवा वाणी <span class="version-tag">AI 2.0</span></span>
+          <span class="brand-sub">Jan Seva Vaani • आवाज़ से डिजिटल सशक्तिकरण</span>
+        </div>
+      </a>
+
+      <nav class="nav-menu" id="nav-menu">
+        <a href="#voice-hero-section" class="nav-item active">वॉयस साथी (Voice Assistant)</a>
+        <a href="#schemes-section" class="nav-item">योजनाएं (Schemes)</a>
+        <a href="#forms-workspace" class="nav-item">सरकारी फॉर्म (Sarkari Form)</a>
+        <a href="#google-form-demo" class="nav-item">Google Form वॉयस मोड</a>
+        <a href="#how-it-works" class="nav-item">कैसे काम करता है?</a>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Accessibility Font Size Scaler -->
+        <div class="font-size-controls" title="अक्षर का आकार (Text Size)">
+          <button id="btn-font-dec" class="btn-text-size" aria-label="Decrease text size">A-</button>
+          <button id="btn-font-reset" class="btn-text-size" aria-label="Reset text size">A</button>
+          <button id="btn-font-inc" class="btn-text-size" aria-label="Increase text size">A+</button>
+        </div>
+
+        <!-- Audio Sound Toggle -->
+        <button id="audio-sound-toggle" class="btn-icon" title="ऑडियो आवाज़ चालू/बंद" aria-label="Toggle Sound Effects">
+          🔊
+        </button>
+
+        <!-- Vernacular Language Selector -->
+        <div class="lang-selector-wrap">
+          <span class="lang-icon">🌐</span>
+          <select id="lang-select" aria-label="Select Language">
+            <option value="hi-IN" selected>हिन्दी (Hindi)</option>
+            <option value="en-IN">English (India)</option>
+            <option value="bn-IN">বাংলা (Bengali)</option>
+            <option value="mr-IN">मराठी (Marathi)</option>
+            <option value="te-IN">తెలుగు (Telugu)</option>
+            <option value="ta-IN">தமிழ் (Tamil)</option>
+            <option value="gu-IN">ગુજરાતી (Gujarati)</option>
+            <option value="kn-IN">ಕನ್ನಡ (Kannada)</option>
+          </select>
+        </div>
+
+        <!-- Theme Toggle -->
+        <button id="theme-toggle" class="btn-icon" aria-label="Toggle light or dark theme" title="थीम बदलें">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION: Interactive Split Layout -->
+    <section class="hero-section" id="voice-hero-section">
+      <div class="hero-container">
+        <!-- Left Column: Compelling Story & Controls -->
+        <div class="hero-left">
+          <div class="hero-badge">
+            <span class="pulse-dot"></span>
+            <span>डिजिटल भारत • हर ग्रामीण व अशिक्षित नागरिक के लिए</span>
+          </div>
+
+          <h1 class="hero-title">
+            लिखना-पढ़ना नहीं आता? <br>
+            <span class="gradient-text">कोई बात नहीं, बस बोलिए!</span>
+          </h1>
+
+          <p class="hero-desc">
+            सरकारी योजनाओं और <strong>Google Forms</strong> को अब कोई भी नागरिक बिना किसी की मदद लिए, 
+            अपनी भाषा में <strong>सिर्फ बात करके</strong> भर सकता है। हमारी AI सहायक आपके साथ बैठकर हर सवाल पूछती है 
+            और आपको सत्यापित रसीद देती है।
+          </p>
+
+          <!-- Current Question Prompt Banner -->
+          <div class="current-prompt-banner" id="current-prompt-banner">
+            <div class="prompt-speaker-icon">🗣️</div>
+            <div class="prompt-content">
+              <div class="prompt-label">AI वॉयस सहायक का प्रश्न :</div>
+              <div class="prompt-text" id="assistant-question-text">
+                "नमस्ते! जन सेवा वाणी में आपका स्वागत है। बोलकर फॉर्म भरने के लिए नीचे हरा बटन दबाएं।"
+              </div>
+            </div>
+            <button class="btn-replay" id="btn-replay-question" title="सवाल दोबारा सुनें">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+              </svg>
+              <span>दोबारा सुनें</span>
+            </button>
+          </div>
+
+          <!-- Hero Action Controls -->
+          <div class="hero-voice-controls">
+            <button class="btn-hero-mic" id="btn-master-mic" aria-label="Start Voice Guided Form Filling">
+              <div class="sonar-wave"></div>
+              <div class="sonar-wave wave-2"></div>
+              <svg class="mic-svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+                <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+              </svg>
+              <span id="master-mic-text">बोलकर पूरा फॉर्म भरें (Start Voice)</span>
+            </button>
+
+            <button class="btn-secondary" id="btn-readback-form">
+              <span class="btn-icon-prefix">🔊</span>
+              <span>भरा हुआ विवरण सुनें (Verify)</span>
+            </button>
+
+            <button class="btn-outline" id="btn-reset-form" title="नया फॉर्म शुरू करें">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                <path d="M3 3v5h5"></path>
+              </svg>
+              <span>नया फॉर्म</span>
+            </button>
+          </div>
+
+          <!-- Live Progress Indicator -->
+          <div class="form-stepper-wrap">
+            <div class="stepper-label">
+              <span>फॉर्म स्थिति: <strong id="step-progress-percent">0% पूर्ण</strong></span>
+              <span id="current-step-name" class="step-name-badge">प्रारंभ करें</span>
+            </div>
+            <div class="stepper-bar">
+              <div class="stepper-fill" id="form-progress-bar" style="width: 5%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Stunning 3D Digital Assistant Card -->
+        <div class="hero-right">
+          <div class="assistant-card" id="assistant-card">
+            <!-- Digital Holographic Aura -->
+            <div class="holo-glow"></div>
+            
+            <div class="assistant-img-wrap">
+              <img src="assistant-avatar.jpg" alt="जन सेवा वाणी AI सहायक 'वाणी दीदी'" class="assistant-img" id="avatar-img">
+              <div class="live-speaking-indicator" id="speaking-pulse-ring"></div>
+            </div>
+
+            <div class="assistant-meta">
+              <div class="assistant-name-row">
+                <h3 class="assistant-name">वाणी दीदी • जन सेवा मित्र</h3>
+                <span class="status-pill online" id="companion-status-pill">
+                  <span class="status-dot"></span>
+                  <span id="companion-status-text">ऑनलाइन व तैयार</span>
+                </span>
+              </div>
+              <p class="assistant-sub">आपकी अपनी भाषा में समर्पित डिजिटल जन सहायक</p>
+            </div>
+
+            <!-- Dynamic Audio Visualizer Canvas -->
+            <div class="visualizer-container">
+              <canvas id="audio-visualizer" width="500" height="70" aria-label="Audio Visualizer Waveform"></canvas>
+            </div>
+
+            <!-- Real-Time Speech Recognition Caption Box -->
+            <div class="live-transcript-box" id="live-transcript-box">
+              <div class="transcript-header">
+                <span class="transcript-tag">
+                  <span class="rec-dot"></span>
+                  लाइव आवाज़ ट्रांसक्रिप्ट:
+                </span>
+                <span class="transcript-lang" id="current-lang-tag">हिन्दी (Hindi)</span>
+              </div>
+              <div class="transcript-body" id="live-transcript-text">
+                "माइक दबाकर बोलें... जैसे: 'मेरा नाम राम कुमार है, गाँव रामपुर, मोबाइल 9876543210'..."
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Welfare Numbers Ribbon -->
+      <div class="stats-ribbon">
+        <div class="stat-item">
+          <div class="stat-num">१२+ करोड़</div>
+          <div class="stat-label">किसान लाभान्वित (PM-Kisan)</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-num">₹५ लाख</div>
+          <div class="stat-label">मुफ्त स्वास्थ्य सुरक्षा (Ayushman)</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-num">८+ भाषाएँ</div>
+          <div class="stat-label">मातृभाषा वॉयस सपोर्ट</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-num">१००% सरल</div>
+          <div class="stat-label">अशिक्षित नागरिकों हेतु समर्पित</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: POPULAR WELFARE SCHEMES (PICTORIAL CARDS) -->
+    <section class="schemes-section" id="schemes-section">
+      <div class="section-container">
+        <div class="section-header text-center">
+          <div class="section-pill">लोकप्रिय योजनाएं • Welfare Schemes</div>
+          <h2 class="section-title">किस योजना के लिए आवेदन करना चाहते हैं?</h2>
+          <p class="section-desc">नीचे अपनी योजना पर क्लिक करें, या माइक दबाकर उसका नाम बोलें। हम अपने आप फॉर्म तैयार कर देंगे।</p>
+        </div>
+
+        <div class="schemes-grid" id="schemes-grid">
+          <!-- Scheme 1: PM Kisan -->
+          <div class="scheme-card active" data-scheme-id="pm-kisan">
+            <div class="scheme-top">
+              <div class="scheme-emoji-wrap bg-emerald">
+                <span class="scheme-emoji">🌾</span>
+              </div>
+              <span class="scheme-benefit-tag">वार्षिक ₹6,000 अनुदान</span>
+            </div>
+            <div class="scheme-body">
+              <h3 class="scheme-title">पीएम किसान सम्मान निधि</h3>
+              <p class="scheme-desc">सभी छोटे व सीमांत किसानों को खेती के खर्च के लिए हर 4 महीने में ₹2,000 की 3 किस्तें सीधे बैंक खाते में।</p>
+              <div class="scheme-checklist">
+                <span>✓ आधार व बैंक खाता अनिवार्य</span>
+                <span>✓ जमीन की खतौनी / रसीद</span>
+              </div>
+            </div>
+            <div class="scheme-actions">
+              <button class="btn-scheme-audio" data-scheme-key="pm-kisan" title="योजना के बारे में सुनें">
+                🔊 <span>योजना सुनें</span>
+              </button>
+              <button class="btn-select-scheme" data-scheme-name="पीएम किसान सम्मान निधि">
+                चुनें <span>✓</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Scheme 2: Ayushman Bharat -->
+          <div class="scheme-card" data-scheme-id="ayushman">
+            <div class="scheme-top">
+              <div class="scheme-emoji-wrap bg-rose">
+                <span class="scheme-emoji">🏥</span>
+              </div>
+              <span class="scheme-benefit-tag">₹5 लाख मुफ्त इलाज</span>
+            </div>
+            <div class="scheme-body">
+              <h3 class="scheme-title">आयुष्मान भारत गोल्डन कार्ड</h3>
+              <p class="scheme-desc">गंभीर बीमारियों और ऑपरेशन के लिए देश के किसी भी सरकारी या पंजीकृत निजी अस्पताल में 5 लाख तक मुफ्त इलाज।</p>
+              <div class="scheme-checklist">
+                <span>✓ SECC सूची व BPL परिवार</span>
+                <span>✓ परिवार के सभी सदस्यों का कार्ड</span>
+              </div>
+            </div>
+            <div class="scheme-actions">
+              <button class="btn-scheme-audio" data-scheme-key="ayushman" title="योजना के बारे में सुनें">
+                🔊 <span>योजना सुनें</span>
+              </button>
+              <button class="btn-select-scheme" data-scheme-name="आयुष्मान भारत गोल्डन कार्ड">
+                चुनें <span>✓</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Scheme 3: Ration Card -->
+          <div class="scheme-card" data-scheme-id="ration">
+            <div class="scheme-top">
+              <div class="scheme-emoji-wrap bg-amber">
+                <span class="scheme-emoji">🍚</span>
+              </div>
+              <span class="scheme-benefit-tag">मुफ्त राशन खाद्य सुरक्षा</span>
+            </div>
+            <div class="scheme-body">
+              <h3 class="scheme-title">राशन कार्ड एवं अन्न सुरक्षा</h3>
+              <p class="scheme-desc">प्रधानमंत्री गरीब कल्याण अन्न योजना के अंतर्गत हर महीने प्रति व्यक्ति 5 किलो मुफ्त गेहूं, चावल व चीनी का वितरण।</p>
+              <div class="scheme-checklist">
+                <span>✓ अंत्योदय व पात्र गृहस्थी कार्ड</span>
+                <span>✓ बायोमीट्रिक राशन वितरण</span>
+              </div>
+            </div>
+            <div class="scheme-actions">
+              <button class="btn-scheme-audio" data-scheme-key="ration" title="योजना के बारे में सुनें">
+                🔊 <span>योजना सुनें</span>
+              </button>
+              <button class="btn-select-scheme" data-scheme-name="राशन कार्ड एवं खाद्य सुरक्षा">
+                चुनें <span>✓</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Scheme 4: e-Shram -->
+          <div class="scheme-card" data-scheme-id="eshram">
+            <div class="scheme-top">
+              <div class="scheme-emoji-wrap bg-cyan">
+                <span class="scheme-emoji">👷</span>
+              </div>
+              <span class="scheme-benefit-tag">₹2 लाख दुर्घटना बीमा</span>
+            </div>
+            <div class="scheme-body">
+              <h3 class="scheme-title">ई-श्रम कार्ड (e-Shram)</h3>
+              <p class="scheme-desc">मजदूरों, राजमिस्त्रियों, ड्राइवरों, फेरीवालों व कामगारों को सरकार द्वारा यूनीक 12 अंकों का राष्ट्रीय श्रमिक कार्ड व आपदा सहायता।</p>
+              <div class="scheme-checklist">
+                <span>✓ 16 से 59 वर्ष के असंगठित मजदूर</span>
+                <span>✓ सीधा बैंक DBT खाता लिंक</span>
+              </div>
+            </div>
+            <div class="scheme-actions">
+              <button class="btn-scheme-audio" data-scheme-key="eshram" title="योजना के बारे में सुनें">
+                🔊 <span>योजना सुनें</span>
+              </button>
+              <button class="btn-select-scheme" data-scheme-name="ई-श्रम कार्ड">
+                चुनें <span>✓</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Scheme 5: PM Awas -->
+          <div class="scheme-card" data-scheme-id="pmawas">
+            <div class="scheme-top">
+              <div class="scheme-emoji-wrap bg-indigo">
+                <span class="scheme-emoji">🏠</span>
+              </div>
+              <span class="scheme-benefit-tag">₹1.20 लाख मकान अनुदान</span>
+            </div>
+            <div class="scheme-body">
+              <h3 class="scheme-title">पीएम आवास योजना (ग्रामीण)</h3>
+              <p class="scheme-desc">कच्चे और टूटे मकानों में रहने वाले जरूरतमंद गरीब परिवारों को पक्का पक्का घर बनाने के लिए सीधे 3 किस्तों में आर्थिक अनुदान।</p>
+              <div class="scheme-checklist">
+                <span>✓ पक्के मकान से विहीन ग्रामीण</span>
+                <span>✓ मनरेगा मजदूरी व शौचालय सहायता</span>
+              </div>
+            </div>
+            <div class="scheme-actions">
+              <button class="btn-scheme-audio" data-scheme-key="pmawas" title="योजना के बारे में सुनें">
+                🔊 <span>योजना सुनें</span>
+              </button>
+              <button class="btn-select-scheme" data-scheme-name="पीएम आवास योजना ग्रामीण">
+                चुनें <span>✓</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Scheme 6: Pension -->
+          <div class="scheme-card" data-scheme-id="pension">
+            <div class="scheme-top">
+              <div class="scheme-emoji-wrap bg-purple">
+                <span class="scheme-emoji">👵</span>
+              </div>
+              <span class="scheme-benefit-tag">मासिक जीवन पेंशन</span>
+            </div>
+            <div class="scheme-body">
+              <h3 class="scheme-title">वृद्धावस्था व विधवा पेंशन</h3>
+              <p class="scheme-desc">60 वर्ष से अधिक वृद्धजनों, निराश्रित विधवा माताओं एवं दिव्यांग भाई-बहनों को सम्मानजनक जीवन यापन हेतु मासिक पेंशन।</p>
+              <div class="scheme-checklist">
+                <span>✓ वरिष्ठ नागरिक (60+ वर्ष)</span>
+                <span>✓ मासिक पेंशन सीधे बैंक खाते में</span>
+              </div>
+            </div>
+            <div class="scheme-actions">
+              <button class="btn-scheme-audio" data-scheme-key="pension" title="योजना के बारे में सुनें">
+                🔊 <span>योजना सुनें</span>
+              </button>
+              <button class="btn-select-scheme" data-scheme-name="वृद्धावस्था व विधवा पेंशन">
+                चुनें <span>✓</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: DUAL WORKSPACE TABS (Sarkari Form vs Google Form) -->
+    <section class="forms-workspace-section" id="forms-workspace">
+      <div class="section-container">
+        <!-- Tabs Switcher -->
+        <div class="workspace-tabs-nav" role="tablist">
+          <button class="tab-btn active" id="tab-btn-sarkari" role="tab" aria-selected="true" data-tab="sarkari">
+            <span class="tab-icon">🏛️</span>
+            <span>सरकारी योजना आवेदन फॉर्म (Jan Seva Official Form)</span>
+          </button>
+          <button class="tab-btn" id="tab-btn-google" role="tab" aria-selected="false" data-tab="google">
+            <span class="tab-icon">📝</span>
+            <span>Google Form वॉयस मोड (Live Google Form Replica)</span>
+          </button>
+        </div>
+
+        <!-- TAB 1: SARKARI FORM -->
+        <div class="tab-content active" id="tab-pane-sarkari">
+          <div class="form-wrapper-card">
+            <div class="form-card-header">
+              <div class="header-left">
+                <span class="gov-seal">🇮🇳</span>
+                <div>
+                  <h3 class="form-card-title">राष्ट्रीय नागरिक जन कल्याण सेवा पोर्टल</h3>
+                  <p class="form-card-sub" id="active-scheme-label">चयनित योजना: <strong>पीएम किसान सम्मान निधि</strong></p>
+                </div>
+              </div>
+              <div class="header-voice-hint">
+                <span class="hint-pulse"></span>
+                <span>किसी भी खाने के आगे बना <strong>माइक (🎙️)</strong> दबाकर बोल सकते हैं</span>
+              </div>
+            </div>
+
+            <form id="citizen-form" class="gov-form-grid" novalidate>
+              <!-- Field 1: Full Name -->
+              <div class="form-field-group" id="group-name">
+                <label for="input-name" class="field-label">
+                  <span class="field-num">१</span>
+                  <span>आवेदक का पूरा नाम (Full Name)</span>
+                  <span class="req">*</span>
+                </label>
+                <div class="field-input-wrap">
+                  <input type="text" id="input-name" class="form-control" placeholder="उदा. रमेश कुमार / Ramesh Kumar" required>
+                  <button type="button" class="btn-field-mic" data-field="name" title="नाम बोलकर भरें">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                      <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+                      <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+                    </svg>
+                  </button>
+                </div>
+                <span class="field-hint">बोलिए: "मेरा नाम [आपका नाम] है"</span>
+              </div>
+
+              <!-- Field 2: Father / Husband Name -->
+              <div class="form-field-group" id="group-guardian">
+                <label for="input-guardian" class="field-label">
+                  <span class="field-num">२</span>
+                  <span>पिता या पति का नाम (Guardian Name)</span>
+                </label>
+                <div class="field-input-wrap">
+                  <input type="text" id="input-guardian" class="form-control" placeholder="उदा. स्व. रामेश्वर प्रसाद">
+                  <button type="button" class="btn-field-mic" data-field="guardian" title="पिता/पति का नाम बोलें">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                      <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+                      <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+                    </svg>
+                  </button>
+                </div>
+                <span class="field-hint">बोलिए: "पिता का नाम [नाम]"</span>
+              </div>
+
+              <!-- Field 3: Mobile Number -->
+              <div class="form-field-group" id="group-mobile">
+                <label for="input-mobile" class="field-label">
+                  <span class="field-num">३</span>
+                  <span>10 अंकों का मोबाइल नंबर (Mobile Number)</span>
+                  <span class="req">*</span>
+                </label>
+                <div class="field-input-wrap">
+                  <input type="tel" id="input-mobile" class="form-control" placeholder="उदा. 9876543210" maxlength="10" required>
+                  <button type="button" class="btn-field-mic" data-field="mobile" title="मोबाइल नंबर बोलें">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                      <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+                      <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+                    </svg>
+                  </button>
+                </div>
+                <span class="field-hint">बोलिए: "मेरा मोबाइल नंबर नौ आठ सात..."</span>
+              </div>
+
+              <!-- Field 4: Aadhaar Number -->
+              <div class="form-field-group" id="group-aadhaar">
+                <label for="input-aadhaar" class="field-label">
+                  <span class="field-num">४</span>
+                  <span>12 अंकों का आधार नंबर (Aadhaar Number)</span>
+                  <span class="req">*</span>
+                </label>
+                <div class="field-input-wrap">
+                  <input type="text" id="input-aadhaar" class="form-control" placeholder="उदा. 4521 8974 6321" maxlength="14" required>
+                  <button type="button" class="btn-field-mic" data-field="aadhaar" title="आधार नंबर बोलें">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                      <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+                      <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+                    </svg>
+                  </button>
+                </div>
+                <span class="field-hint">बोलिए: "आधार नंबर 1234..."</span>
+              </div>
+
+              <!-- Field 5: Age & Gender -->
+              <div class="form-field-group" id="group-age-gender">
+                <label class="field-label">
+                  <span class="field-num">५</span>
+                  <span>उम्र एवं लिंग (Age & Gender)</span>
+                  <span class="req">*</span>
+                </label>
+                <div class="field-row">
+                  <div class="field-input-wrap flex-1">
+                    <input type="number" id="input-age" class="form-control" placeholder="उम्र (Age, उदा. 42)" min="18" max="110" required>
+                  </div>
+                  <div class="field-input-wrap flex-1">
+                    <select id="select-gender" class="form-control" required>
+                      <option value="">लिंग चुनें (Gender)</option>
+                      <option value="पुरुष">पुरुष (Male)</option>
+                      <option value="महिला">महिला (Female)</option>
+                      <option value="अन्य">अन्य (Other)</option>
+                    </select>
+                  </div>
+                  <button type="button" class="btn-field-mic" data-field="age-gender" title="उम्र और लिंग बोलें">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                      <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+                      <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+                    </svg>
+                  </button>
+                </div>
+                <span class="field-hint">बोलिए: "मेरी उम्र पैंतालीस वर्ष है और मैं पुरुष हूँ"</span>
+              </div>
+
+              <!-- Field 6: Village & District -->
+              <div class="form-field-group" id="group-address">
+                <label for="input-address" class="field-label">
+                  <span class="field-num">६</span>
+                  <span>गाँव, ग्राम पंचायत एवं जिला (Village & District)</span>
+                  <span class="req">*</span>
+                </label>
+                <div class="field-input-wrap">
+                  <input type="text" id="input-address" class="form-control" placeholder="उदा. ग्राम रामपुर, पोस्ट बरौनी, जिला सीतामढ़ी" required>
+                  <button type="button" class="btn-field-mic" data-field="address" title="पता बोलकर भरें">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                      <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+                      <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+                    </svg>
+                  </button>
+                </div>
+                <span class="field-hint">बोलिए: "मेरा गाँव रामपुर है, जिला सीतामढ़ी"</span>
+              </div>
+
+              <!-- Field 7: Occupation / Work -->
+              <div class="form-field-group" id="group-occupation">
+                <label for="input-occupation" class="field-label">
+                  <span class="field-num">७</span>
+                  <span>मुख्य व्यवसाय / कार्य (Occupation / Work)</span>
+                </label>
+                <div class="field-input-wrap">
+                  <input type="text" id="input-occupation" class="form-control" placeholder="उदा. किसान (खेती), दिहाड़ी मजदूर, बुनकर, पशुपालन">
+                  <button type="button" class="btn-field-mic" data-field="occupation" title="काम बोलकर बताएं">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                      <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+                      <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+                    </svg>
+                  </button>
+                </div>
+                <span class="field-hint">बोलिए: "मैं किसान हूँ / मजदूर हूँ"</span>
+              </div>
+
+              <!-- Field 8: Bank Account & IFSC -->
+              <div class="form-field-group" id="group-bank">
+                <label for="input-bank" class="field-label">
+                  <span class="field-num">८</span>
+                  <span>बैंक खाता संख्या (Bank Account - Optional)</span>
+                </label>
+                <div class="field-input-wrap">
+                  <input type="text" id="input-bank" class="form-control" placeholder="उदा. SBI खाता: 30987456123">
+                  <button type="button" class="btn-field-mic" data-field="bank" title="बैंक खाता बोलें">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                      <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+                      <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+                    </svg>
+                  </button>
+                </div>
+                <span class="field-hint">योजना का पैसा सीधे इसी बैंक खाते में भेजा जाएगा</span>
+              </div>
+
+              <!-- Submit & Print Actions -->
+              <div class="form-submit-row">
+                <button type="submit" class="btn-primary-large" id="btn-submit-form">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>फॉर्म जमा करें और सरकारी रसीद पाएं (Submit & Get Slip)</span>
+                </button>
+
+                <button type="button" class="btn-secondary" id="btn-quick-fill-demo">
+                  <span class="demo-icon">⚡</span>
+                  <span>डेमो डेटा भरें (Fill Sample Data)</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- TAB 2: GOOGLE FORM LIVE REPLICA WITH AI VOICE MIC -->
+        <div class="tab-content" id="tab-pane-google">
+          <div class="google-form-container" id="google-form-demo">
+            
+            <!-- Google Form Official Visual Banner Artwork -->
+            <div class="gf-banner-card">
+              <img src="google-form-banner.jpg" alt="Digital India Citizen Welfare Google Form" class="gf-banner-img">
+            </div>
+
+            <!-- Floating / Inline AI Voice Assistant Bar for Google Form -->
+            <div class="gf-voice-assistant-bar">
+              <div class="gf-assistant-info">
+                <span class="gf-mic-badge">
+                  <span class="gf-dot"></span>
+                  Google Form AI वॉयस सहायक
+                </span>
+                <span class="gf-assistant-text" id="gf-status-text">
+                  "Google Form में बिना टाइप किए, सिर्फ बोलकर भरने के लिए 'बोलकर शुरू करें' दबाएं"
+                </span>
+              </div>
+              <div class="gf-assistant-actions">
+                <button class="btn-gf-voice-start" id="btn-gf-autofill">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                    <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+                    <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+                  </svg>
+                  <span>बोलकर शुरू करें (Start Voice)</span>
+                </button>
+                <button class="btn-gf-skip" id="btn-gf-next-field">अगला सवाल ➔</button>
+              </div>
+            </div>
+
+            <!-- Main Google Form Header Card -->
+            <div class="gf-card gf-header-card">
+              <h2 class="gf-form-title">प्रधानमंत्री जन कल्याण एवं कौशल योजना सर्वे (Citizen Welfare Form)</h2>
+              <p class="gf-form-desc">
+                यह फॉर्म उन सभी नागरिकों के लिए है जो सरकारी योजनाओं के लिए आवेदन करना चाहते हैं। 
+                यदि आपको पढ़ना या लिखना नहीं आता, तो प्रत्येक प्रश्न के साथ दिए गए <strong>बैंगनी माइक (🎙️)</strong> पर क्लिक करें और बोलें।
+              </p>
+              <div class="gf-divider"></div>
+              <div class="gf-required-note">* आवश्यक प्रश्न (Required)</div>
+            </div>
+
+            <!-- Google Form Question 1: Name -->
+            <div class="gf-card gf-question-card" id="gf-q1">
+              <div class="gf-q-header">
+                <label for="gf-input-name" class="gf-q-title">
+                  १. आपका पूरा नाम क्या है? (Full Name) <span class="gf-req">*</span>
+                </label>
+                <button type="button" class="gf-q-mic" data-gf-target="gf-input-name" title="नाम बोलकर दर्ज करें">
+                  🎙️ <span>बोलें</span>
+                </button>
+              </div>
+              <div class="gf-input-line">
+                <input type="text" id="gf-input-name" placeholder="आपका उत्तर (Your answer)" class="gf-text-field">
+              </div>
+            </div>
+
+            <!-- Google Form Question 2: Mobile -->
+            <div class="gf-card gf-question-card" id="gf-q2">
+              <div class="gf-q-header">
+                <label for="gf-input-mobile" class="gf-q-title">
+                  २. संपर्क के लिए 10 अंकों का मोबाइल नंबर? (Phone Number) <span class="gf-req">*</span>
+                </label>
+                <button type="button" class="gf-q-mic" data-gf-target="gf-input-mobile" title="फोन नंबर बोलें">
+                  🎙️ <span>बोलें</span>
+                </button>
+              </div>
+              <div class="gf-input-line">
+                <input type="tel" id="gf-input-mobile" placeholder="आपका 10 अंकों का फोन नंबर" class="gf-text-field">
+              </div>
+            </div>
+
+            <!-- Google Form Question 3: Scheme Radio Buttons -->
+            <div class="gf-card gf-question-card" id="gf-q3">
+              <div class="gf-q-header">
+                <div class="gf-q-title">
+                  ३. आप किस सरकारी योजना के लिए आवेदन करना चाहते हैं? (Select Scheme) <span class="gf-req">*</span>
+                </div>
+                <button type="button" class="gf-q-mic" data-gf-target="radio-scheme" title="योजना का नाम बोलें">
+                  🎙️ <span>बोलें</span>
+                </button>
+              </div>
+              <div class="gf-radio-group">
+                <label class="gf-radio-item">
+                  <input type="radio" name="gf-scheme-choice" value="PM Kisan" checked>
+                  <span class="gf-radio-custom"></span>
+                  <span class="gf-radio-label">🌾 पीएम किसान सम्मान निधि (PM Kisan Samman Nidhi)</span>
+                </label>
+                <label class="gf-radio-item">
+                  <input type="radio" name="gf-scheme-choice" value="Ayushman Bharat">
+                  <span class="gf-radio-custom"></span>
+                  <span class="gf-radio-label">🏥 आयुष्मान भारत गोल्डन कार्ड (Ayushman Bharat 5 Lakh)</span>
+                </label>
+                <label class="gf-radio-item">
+                  <input type="radio" name="gf-scheme-choice" value="Ration Card">
+                  <span class="gf-radio-custom"></span>
+                  <span class="gf-radio-label">🍚 राशन कार्ड एवं खाद्य सुरक्षा (Ration Card)</span>
+                </label>
+                <label class="gf-radio-item">
+                  <input type="radio" name="gf-scheme-choice" value="e-Shram">
+                  <span class="gf-radio-custom"></span>
+                  <span class="gf-radio-label">👷 ई-श्रम कार्ड (e-Shram Card)</span>
+                </label>
+                <label class="gf-radio-item">
+                  <input type="radio" name="gf-scheme-choice" value="Other">
+                  <span class="gf-radio-custom"></span>
+                  <span class="gf-radio-label">अन्य कोई योजना (Other)</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Google Form Question 4: Address -->
+            <div class="gf-card gf-question-card" id="gf-q4">
+              <div class="gf-q-header">
+                <label for="gf-input-address" class="gf-q-title">
+                  ४. आपका गाँव, पंचायत व जिला क्या है? (Village & District) <span class="gf-req">*</span>
+                </label>
+                <button type="button" class="gf-q-mic" data-gf-target="gf-input-address" title="पता बोलें">
+                  🎙️ <span>बोलें</span>
+                </button>
+              </div>
+              <div class="gf-input-line">
+                <input type="text" id="gf-input-address" placeholder="गाँव व जिले का नाम बोलें" class="gf-text-field">
+              </div>
+            </div>
+
+            <!-- Google Form Question 5: Remarks / Needs -->
+            <div class="gf-card gf-question-card" id="gf-q5">
+              <div class="gf-q-header">
+                <label for="gf-input-remarks" class="gf-q-title">
+                  ५. क्या आपको कोई विशेष समस्या या सहायता की जरूरत है? (Remarks)
+                </label>
+                <button type="button" class="gf-q-mic" data-gf-target="gf-input-remarks" title="टिप्पणी बोलें">
+                  🎙️ <span>बोलें</span>
+                </button>
+              </div>
+              <div class="gf-input-line">
+                <textarea id="gf-input-remarks" placeholder="अपनी समस्या या संदेश बोलकर रिकॉर्ड करें..." class="gf-text-field gf-textarea" rows="2"></textarea>
+              </div>
+            </div>
+
+            <!-- Google Form Submission Buttons -->
+            <div class="gf-actions-row">
+              <button type="button" class="btn-gf-submit" id="btn-gf-submit">
+                <span>जमा करें (Submit Google Form)</span>
+              </button>
+              <button type="button" class="btn-gf-clear" id="btn-gf-clear">
+                फॉर्म साफ करें (Clear form)
+              </button>
+            </div>
+
+            <div class="gf-footer-info">
+              <span>Google Forms द्वारा संचालित • (AI Voice Enabled by Jan Seva Vaani 2.0)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: HOW IT WORKS & CITIZEN EMPOWERMENT -->
+    <section class="how-it-works-section" id="how-it-works">
+      <div class="section-container">
+        <div class="section-header text-center">
+          <div class="section-pill">डिजिटल समावेशन • Digital Inclusion</div>
+          <h2 class="section-title">जन सेवा वाणी कैसे अनपढ़ नागरिकों की मदद करती है?</h2>
+          <p class="section-desc">अक्षर ज्ञान न होने पर भी भारत का हर नागरिक बिना दलालों के सीधे लाभ ले सकता है।</p>
+        </div>
+
+        <div class="impact-steps-grid">
+          <div class="impact-step-card">
+            <div class="step-badge">चरण १</div>
+            <div class="step-icon">🗣️</div>
+            <h4 class="step-title">मातृभाषा में स्पष्ट सवाल</h4>
+            <p class="step-desc">AI सहायक आपकी पसंदीदा भाषा (हिन्दी, बंगाली, तमिल, आदि) में आपसे एक-एक करके सरल सवाल पूछता है।</p>
+          </div>
+
+          <div class="impact-step-card">
+            <div class="step-badge">चरण २</div>
+            <div class="step-icon">👂</div>
+            <h4 class="step-title">आवाज़ को समझना व लिखना</h4>
+            <p class="step-desc">आपके बोले हुए शब्दों और अंकों (जैसे: "नौ आठ सात...") को AI तुरंत शुद्ध अंकों और नामों में बदलकर फॉर्म में टाइप कर देता है।</p>
+          </div>
+
+          <div class="impact-step-card">
+            <div class="step-badge">चरण ३</div>
+            <div class="step-icon">🔊</div>
+            <h4 class="step-title">बोलकर सत्यापन (Readback)</h4>
+            <p class="step-desc">सबमिट करने से पहले AI पूरा फॉर्म बोलकर सुनाता है, ताकि नागरिक सुनकर पुष्टि कर सके कि उसकी जानकारी सही है।</p>
+          </div>
+
+          <div class="impact-step-card">
+            <div class="step-badge">चरण ४</div>
+            <div class="step-icon">🖨️</div>
+            <h4 class="step-title">पक्की सरकारी रसीद</h4>
+            <p class="step-desc">QR कोड और आवेदन संख्या के साथ आधिकारिक पर्ची तुरंत तैयार होती है, जिसे प्रिंट या सुरक्षित किया जा सकता है।</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- PRINTABLE OFFICIAL ACKNOWLEDGEMENT SLIP MODAL -->
+  <div class="slip-modal-backdrop" id="slip-modal" aria-hidden="true">
+    <div class="slip-modal-dialog">
+      <div class="slip-modal-header">
+        <h3>📄 सरकारी योजना आवेदन पावती (Official Receipt)</h3>
+        <button class="btn-close-modal" id="btn-close-slip" aria-label="Close modal">✕</button>
+      </div>
+
+      <div class="slip-modal-body" id="printable-receipt">
+        <!-- Official Watermark & Header -->
+        <div class="receipt-gov-header">
+          <div class="receipt-emblem">🇮🇳</div>
+          <div class="receipt-titles">
+            <h4>भारत सरकार • GOVT. OF INDIA</h4>
+            <h5>जन कल्याण एवं सामाजिक सुरक्षा सेवा पोर्टल</h5>
+            <p>Jan Seva Vaani 2.0 Digital Acknowledgment Slip</p>
+          </div>
+          <div class="receipt-stamp">
+            <span>सत्यापित</span>
+            <small>VERIFIED</small>
+          </div>
+        </div>
+
+        <div class="receipt-ref-row">
+          <div>आवेदन संदर्भ संख्या: <strong id="slip-app-id">JSV-2026-89472</strong></div>
+          <div>दिनांक व समय: <strong id="slip-timestamp">17 Sep 2026, 05:30 PM</strong></div>
+        </div>
+
+        <div class="receipt-details-table">
+          <div class="r-row">
+            <span class="r-cell-label">आवेदक का नाम:</span>
+            <span class="r-cell-val" id="slip-name">रमेश कुमार</span>
+          </div>
+          <div class="r-row">
+            <span class="r-cell-label">पिता/पति का नाम:</span>
+            <span class="r-cell-val" id="slip-guardian">रामेश्वर प्रसाद</span>
+          </div>
+          <div class="r-row">
+            <span class="r-cell-label">योजना का नाम:</span>
+            <span class="r-cell-val highlight" id="slip-scheme">पीएम किसान सम्मान निधि</span>
+          </div>
+          <div class="r-row">
+            <span class="r-cell-label">मोबाइल नंबर:</span>
+            <span class="r-cell-val" id="slip-mobile">9876543210</span>
+          </div>
+          <div class="r-row">
+            <span class="r-cell-label">आधार कार्ड संख्या:</span>
+            <span class="r-cell-val" id="slip-aadhaar">XXXX-XXXX-4521</span>
+          </div>
+          <div class="r-row">
+            <span class="r-cell-label">उम्र एवं लिंग:</span>
+            <span class="r-cell-val" id="slip-age-gender">42 वर्ष / पुरुष</span>
+          </div>
+          <div class="r-row">
+            <span class="r-cell-label">गाँव व जिला:</span>
+            <span class="r-cell-val" id="slip-address">ग्राम रामपुर, जिला सीतामढ़ी</span>
+          </div>
+          <div class="r-row">
+            <span class="r-cell-label">व्यवसाय / कार्य:</span>
+            <span class="r-cell-val" id="slip-occupation">किसान (खेती)</span>
+          </div>
+          <div class="r-row">
+            <span class="r-cell-label">आवेदन माध्यम:</span>
+            <span class="r-cell-val">🎙️ जन सेवा वाणी AI (वॉयस असिस्टेंट द्वारा सत्यापित)</span>
+          </div>
+        </div>
+
+        <div class="receipt-footer-row">
+          <div class="receipt-qr-box">
+            <svg class="qr-placeholder" viewBox="0 0 100 100" width="80" height="80">
+              <rect width="100" height="100" fill="#f8fafc" />
+              <!-- QR Corner 1 -->
+              <rect x="5" y="5" width="30" height="30" fill="#0f172a" />
+              <rect x="10" y="10" width="20" height="20" fill="#f8fafc" />
+              <rect x="15" y="15" width="10" height="10" fill="#0f172a" />
+              <!-- QR Corner 2 -->
+              <rect x="65" y="5" width="30" height="30" fill="#0f172a" />
+              <rect x="70" y="10" width="20" height="20" fill="#f8fafc" />
+              <rect x="75" y="15" width="10" height="10" fill="#0f172a" />
+              <!-- QR Corner 3 -->
+              <rect x="5" y="65" width="30" height="30" fill="#0f172a" />
+              <rect x="10" y="70" width="20" height="20" fill="#f8fafc" />
+              <rect x="15" y="75" width="10" height="10" fill="#0f172a" />
+              <!-- Data dots -->
+              <rect x="42" y="10" width="10" height="10" fill="#0f172a" />
+              <rect x="45" y="30" width="10" height="10" fill="#0f172a" />
+              <rect x="45" y="50" width="10" height="10" fill="#0f172a" />
+              <rect x="65" y="45" width="10" height="10" fill="#0f172a" />
+              <rect x="45" y="75" width="10" height="10" fill="#0f172a" />
+              <rect x="65" y="75" width="15" height="15" fill="#0f172a" />
+            </svg>
+            <div class="qr-caption">स्कैन कर स्थिति जांचें</div>
+          </div>
+          <div class="receipt-auth-note">
+            <p><strong>नोट:</strong> यह एक कंप्यूटर जनित वॉयस-वेरिफाइड आवेदन पावती है। किसी हस्ताक्षर की आवश्यकता नहीं है।</p>
+            <p>योजना की राशि स्वीकृत होने पर सीधे पंजीकृत बैंक खाते (DBT) में भेजी जाएगी।</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="slip-modal-actions">
+        <button class="btn-primary-large" id="btn-print-slip">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 6 2 18 2 18 9"></polyline>
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+            <rect x="6" y="14" width="12" height="8"></rect>
+          </svg>
+          <span>रसीद प्रिंट करें / PDF सेव करें (Print)</span>
+        </button>
+        <button class="btn-outline" id="btn-modal-close-bottom">बंद करें</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <span class="flag-icon">🇮🇳</span>
+          <span class="footer-title">जन सेवा वाणी AI 2.0</span>
+        </div>
+        <p class="footer-tagline">
+          डिजिटल भारत का संकल्प • हर अशिक्षित एवं ग्रामीण नागरिक तक सरकारी योजनाओं की सीधी पहुँच।
+        </p>
+      </div>
+      <div class="footer-links">
+        <span class="f-link" data-scheme="पीएम किसान सम्मान निधि">पीएम किसान</span> •
+        <span class="f-link" data-scheme="आयुष्मान भारत गोल्डन कार्ड">आयुष्मान भारत</span> •
+        <span class="f-link" data-scheme="राशन कार्ड एवं खाद्य सुरक्षा">खाद्य सुरक्षा</span> •
+        <span class="f-link" data-scheme="ई-श्रम कार्ड">ई-श्रम</span> •
+        <span class="f-link" data-scheme="पीएम आवास योजना ग्रामीण">पीएम आवास</span> •
+        <span class="f-link" data-scheme="वृद्धावस्था व विधवा पेंशन">वृद्धा पेंशन</span>
+      </div>
+      <div class="footer-copy">
+        © 2026 Jan Seva Vaani AI Project • Public Welfare Digital Empowerment Initiative
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
